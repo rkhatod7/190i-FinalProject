@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/Radhika/Desktop/190i-finalProject/FinalProject/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aa5c853446cbd6fbc0850b1232fa55cce750b043">
+        <dex dex="/Users/Radhika/Desktop/190i-finalProject/FinalProject/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e7af7ea5bb12f24d076c2ae7a825dc8ec87c9ace/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Radhika/Desktop/190i-finalProject/FinalProject/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/Radhika/Desktop/190i-finalProject/FinalProject/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_c7c037eb7ed06279936358aa16e767086629e6a9/classes.dex" />
+    </item>
+
+</items>

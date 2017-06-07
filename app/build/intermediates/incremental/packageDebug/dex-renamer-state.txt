@@ -1,0 +1,7 @@
+#Wed Jun 07 13:41:01 PDT 2017
+base.0=/Users/Radhika/Desktop/190i-finalProject/FinalProject/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e7af7ea5bb12f24d076c2ae7a825dc8ec87c9ace
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/Radhika/Desktop/190i-finalProject/FinalProject/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_c7c037eb7ed06279936358aa16e767086629e6a9/classes.dex
+base.1=/Users/Radhika/Desktop/190i-finalProject/FinalProject/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_c7c037eb7ed06279936358aa16e767086629e6a9
+file.0=/Users/Radhika/Desktop/190i-finalProject/FinalProject/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e7af7ea5bb12f24d076c2ae7a825dc8ec87c9ace/classes.dex

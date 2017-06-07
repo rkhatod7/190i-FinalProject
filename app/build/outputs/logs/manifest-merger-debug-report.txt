@@ -1,0 +1,209 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:2:1-67:12
+	package
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:3:5-47
+		INJECTED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:5:5-67
+MERGED from [com.google.android.gms:play-services-maps:10.2.1] /Users/Radhika/.android/build-cache/248a1139c633561da27c59a91742720c17934d6f/output/AndroidManifest.xml:20:5-66
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:12:5-79
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:12:22-76
+application
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:14:5-65:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/Radhika/.android/build-cache/c8131fb74b58048474917e89624a36ecec2c675b/output/AndroidManifest.xml:9:5-20
+MERGED from [com.facebook.android:facebook-android-sdk:4.23.0] /Users/Radhika/.android/build-cache/fa1b9b797f6bb5503df53253193361ad072b5a6d/output/AndroidManifest.xml:28:5-48:19
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/Radhika/.android/build-cache/f340a2c5ca4003c4139a91ee8f872bffbe4de811/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/Radhika/.android/build-cache/c15ee031b60efdc9565d9d0533eecd7576f6bbbf/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/Radhika/.android/build-cache/027288f45aaf6dc2d26950d411347065c2f55946/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:cardview-v7:25.3.1] /Users/Radhika/.android/build-cache/ec4d6918f62b5f81e70d89917b51f8520108861a/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:customtabs:25.3.1] /Users/Radhika/.android/build-cache/37371f059144b2b6bc380c33da6c3705039e8e55/output/AndroidManifest.xml:26:5-20
+MERGED from [com.google.android.gms:play-services-maps:10.2.1] /Users/Radhika/.android/build-cache/248a1139c633561da27c59a91742720c17934d6f/output/AndroidManifest.xml:24:5-19
+MERGED from [com.google.android.gms:play-services-base:10.2.1] /Users/Radhika/.android/build-cache/5f7913b649496700a052f26faeccfd7a9a98f68f/output/AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-tasks:10.2.1] /Users/Radhika/.android/build-cache/66a271a88953ad954609fc9ad7712015db2da07d/output/AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.2.1] /Users/Radhika/.android/build-cache/25e329039ce10613f7b8c5ea8520efc2a3e724cf/output/AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:25.3.1] /Users/Radhika/.android/build-cache/d251fd1d1c0e5d7977e715719db70200a5543f3d/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/Radhika/.android/build-cache/1166d8f0b1783db3fd9169bf494906e6dfd77f93/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/Radhika/.android/build-cache/1b03c34ba56185b781789014828514add5f7dd0c/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/Radhika/.android/build-cache/7f0c428b7d0ff0c09a82e3b612ad8056856d7cdd/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/Radhika/.android/build-cache/67adce4d0436c841c4fb0e6339f523792a53c8e0/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /Users/Radhika/.android/build-cache/7dca0bdcadaeb9a44cfe09096ccb32080518fcd3/output/AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:17:9-41
+	android:supportsRtl
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:19:9-35
+	android:roundIcon
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:18:9-54
+	android:allowBackup
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:15:9-35
+	android:icon
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:16:9-43
+	android:theme
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:20:9-40
+meta-data#com.facebook.sdk.ApplicationId
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:21:9-23:55
+	android:value
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:23:13-52
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:22:13-58
+activity#com.example.radhika.finalproject.MainActivity
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:25:9-31:20
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:25:19-47
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:26:13-30:29
+action#android.intent.action.MAIN
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:27:17-69
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:27:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:29:17-77
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:29:27-74
+activity#com.facebook.FacebookActivity
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:32:9-35:48
+MERGED from [com.facebook.android:facebook-android-sdk:4.23.0] /Users/Radhika/.android/build-cache/fa1b9b797f6bb5503df53253193361ad072b5a6d/output/AndroidManifest.xml:29:9-32:66
+	android:label
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:35:13-45
+	android:configChanges
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:34:13-96
+	android:theme
+		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] /Users/Radhika/.android/build-cache/fa1b9b797f6bb5503df53253193361ad072b5a6d/output/AndroidManifest.xml:32:13-63
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:33:13-57
+activity#com.facebook.CustomTabActivity
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:36:9-47:20
+	android:exported
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:38:13-36
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:37:13-58
+intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:39:13-46:29
+action#android.intent.action.VIEW
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:40:17-69
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:40:25-66
+category#android.intent.category.DEFAULT
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:42:17-76
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:42:27-73
+category#android.intent.category.BROWSABLE
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:43:17-78
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:43:27-75
+data
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:45:17-75
+	android:scheme
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:45:23-72
+activity#com.example.radhika.finalproject.HomePage
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:48:9-46
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:48:19-43
+meta-data#com.google.android.geo.API_KEY
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:57:9-59:55
+	android:value
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:59:13-52
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:58:13-58
+activity#com.example.radhika.finalproject.ListActivity
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:60:9-59
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:60:19-47
+activity#com.example.radhika.finalproject.MapsActivity
+ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:61:9-63:59
+	android:label
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:63:13-56
+	android:name
+		ADDED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml:62:13-41
+uses-sdk
+INJECTED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/Radhika/.android/build-cache/c8131fb74b58048474917e89624a36ecec2c675b/output/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.android:facebook-android-sdk:4.23.0] /Users/Radhika/.android/build-cache/fa1b9b797f6bb5503df53253193361ad072b5a6d/output/AndroidManifest.xml:24:5-26:41
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/Radhika/.android/build-cache/f340a2c5ca4003c4139a91ee8f872bffbe4de811/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/Radhika/.android/build-cache/c15ee031b60efdc9565d9d0533eecd7576f6bbbf/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/Radhika/.android/build-cache/027288f45aaf6dc2d26950d411347065c2f55946/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:25.3.1] /Users/Radhika/.android/build-cache/ec4d6918f62b5f81e70d89917b51f8520108861a/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:customtabs:25.3.1] /Users/Radhika/.android/build-cache/37371f059144b2b6bc380c33da6c3705039e8e55/output/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:10.2.1] /Users/Radhika/.android/build-cache/248a1139c633561da27c59a91742720c17934d6f/output/AndroidManifest.xml:23:5-43
+MERGED from [com.google.android.gms:play-services-base:10.2.1] /Users/Radhika/.android/build-cache/5f7913b649496700a052f26faeccfd7a9a98f68f/output/AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-tasks:10.2.1] /Users/Radhika/.android/build-cache/66a271a88953ad954609fc9ad7712015db2da07d/output/AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-basement:10.2.1] /Users/Radhika/.android/build-cache/25e329039ce10613f7b8c5ea8520efc2a3e724cf/output/AndroidManifest.xml:17:5-43
+MERGED from [com.android.support:support-v4:25.3.1] /Users/Radhika/.android/build-cache/d251fd1d1c0e5d7977e715719db70200a5543f3d/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/Radhika/.android/build-cache/1166d8f0b1783db3fd9169bf494906e6dfd77f93/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/Radhika/.android/build-cache/1b03c34ba56185b781789014828514add5f7dd0c/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/Radhika/.android/build-cache/7f0c428b7d0ff0c09a82e3b612ad8056856d7cdd/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/Radhika/.android/build-cache/67adce4d0436c841c4fb0e6339f523792a53c8e0/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] /Users/Radhika/.android/build-cache/7dca0bdcadaeb9a44cfe09096ccb32080518fcd3/output/AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/Radhika/.android/build-cache/f340a2c5ca4003c4139a91ee8f872bffbe4de811/output/AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/Radhika/Desktop/190i-finalProject/FinalProject/app/src/main/AndroidManifest.xml
+activity#com.facebook.CustomTabMainActivity
+ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] /Users/Radhika/.android/build-cache/fa1b9b797f6bb5503df53253193361ad072b5a6d/output/AndroidManifest.xml:33:9-71
+	android:name
+		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] /Users/Radhika/.android/build-cache/fa1b9b797f6bb5503df53253193361ad072b5a6d/output/AndroidManifest.xml:33:19-68
+provider#com.facebook.internal.FacebookInitProvider
+ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] /Users/Radhika/.android/build-cache/fa1b9b797f6bb5503df53253193361ad072b5a6d/output/AndroidManifest.xml:44:9-47:40
+	android:authorities
+		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] /Users/Radhika/.android/build-cache/fa1b9b797f6bb5503df53253193361ad072b5a6d/output/AndroidManifest.xml:46:13-72
+	android:exported
+		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] /Users/Radhika/.android/build-cache/fa1b9b797f6bb5503df53253193361ad072b5a6d/output/AndroidManifest.xml:47:13-37
+	android:name
+		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] /Users/Radhika/.android/build-cache/fa1b9b797f6bb5503df53253193361ad072b5a6d/output/AndroidManifest.xml:45:13-70
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/Radhika/.android/build-cache/f340a2c5ca4003c4139a91ee8f872bffbe4de811/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/Radhika/.android/build-cache/c15ee031b60efdc9565d9d0533eecd7576f6bbbf/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/Radhika/.android/build-cache/027288f45aaf6dc2d26950d411347065c2f55946/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:cardview-v7:25.3.1] /Users/Radhika/.android/build-cache/ec4d6918f62b5f81e70d89917b51f8520108861a/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:customtabs:25.3.1] /Users/Radhika/.android/build-cache/37371f059144b2b6bc380c33da6c3705039e8e55/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] /Users/Radhika/.android/build-cache/d251fd1d1c0e5d7977e715719db70200a5543f3d/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/Radhika/.android/build-cache/1166d8f0b1783db3fd9169bf494906e6dfd77f93/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/Radhika/.android/build-cache/1b03c34ba56185b781789014828514add5f7dd0c/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/Radhika/.android/build-cache/7f0c428b7d0ff0c09a82e3b612ad8056856d7cdd/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/Radhika/.android/build-cache/67adce4d0436c841c4fb0e6339f523792a53c8e0/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /Users/Radhika/.android/build-cache/7dca0bdcadaeb9a44cfe09096ccb32080518fcd3/output/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/Radhika/.android/build-cache/f340a2c5ca4003c4139a91ee8f872bffbe4de811/output/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/Radhika/.android/build-cache/f340a2c5ca4003c4139a91ee8f872bffbe4de811/output/AndroidManifest.xml:26:9-47
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.android.gms:play-services-maps:10.2.1] /Users/Radhika/.android/build-cache/248a1139c633561da27c59a91742720c17934d6f/output/AndroidManifest.xml:19:5-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:10.2.1] /Users/Radhika/.android/build-cache/248a1139c633561da27c59a91742720c17934d6f/output/AndroidManifest.xml:19:22-76
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:10.2.1] /Users/Radhika/.android/build-cache/248a1139c633561da27c59a91742720c17934d6f/output/AndroidManifest.xml:21:5-77
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:10.2.1] /Users/Radhika/.android/build-cache/248a1139c633561da27c59a91742720c17934d6f/output/AndroidManifest.xml:21:19-51
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:10.2.1] /Users/Radhika/.android/build-cache/248a1139c633561da27c59a91742720c17934d6f/output/AndroidManifest.xml:21:52-75
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:10.2.1] /Users/Radhika/.android/build-cache/5f7913b649496700a052f26faeccfd7a9a98f68f/output/AndroidManifest.xml:19:9-172
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:10.2.1] /Users/Radhika/.android/build-cache/5f7913b649496700a052f26faeccfd7a9a98f68f/output/AndroidManifest.xml:19:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:10.2.1] /Users/Radhika/.android/build-cache/5f7913b649496700a052f26faeccfd7a9a98f68f/output/AndroidManifest.xml:19:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:10.2.1] /Users/Radhika/.android/build-cache/5f7913b649496700a052f26faeccfd7a9a98f68f/output/AndroidManifest.xml:19:19-85
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:10.2.1] /Users/Radhika/.android/build-cache/25e329039ce10613f7b8c5ea8520efc2a3e724cf/output/AndroidManifest.xml:20:9-121
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:10.2.1] /Users/Radhika/.android/build-cache/25e329039ce10613f7b8c5ea8520efc2a3e724cf/output/AndroidManifest.xml:20:66-119
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:10.2.1] /Users/Radhika/.android/build-cache/25e329039ce10613f7b8c5ea8520efc2a3e724cf/output/AndroidManifest.xml:20:20-65
