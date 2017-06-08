@@ -11,12 +11,13 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 // TODO REFACTOR NAME BECAUSE THIS ACTUALLY ISNT A POPUP ANYMORE
 public class PlacePopUp extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    Button back_button;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -59,6 +60,7 @@ public class PlacePopUp extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_place_pop_up, container, false);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
+        back_button = (Button) view.findViewById(R.id.button3);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +68,13 @@ public class PlacePopUp extends Fragment {
             }
         });
 
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MapsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
