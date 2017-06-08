@@ -1,20 +1,17 @@
 package com.example.radhika.finalproject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 // TODO REFACTOR NAME BECAUSE THIS ACTUALLY ISNT A POPUP ANYMORE
-public class PlacePopUp extends Fragment {
+public class PlaceReview extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     Button back_button;
@@ -23,7 +20,7 @@ public class PlacePopUp extends Fragment {
     private String mParam2;
     MapsActivity mActivity;
     Context mContext;
-    public PlacePopUp() {
+    public PlaceReview() {
         // Required empty public constructor
     }
 
@@ -33,11 +30,11 @@ public class PlacePopUp extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PlacePopUp.
+     * @return A new instance of fragment PlaceReview.
      */
     // TODO: Rename and change types and number of parameters
-    public static PlacePopUp newInstance() {
-        PlacePopUp fragment = new PlacePopUp();
+    public static PlaceReview newInstance() {
+        PlaceReview fragment = new PlaceReview();
 //        Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
 //        args.putString(ARG_PARAM2, param2);
@@ -58,7 +55,7 @@ public class PlacePopUp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_place_pop_up, container, false);
+        View view = inflater.inflate(R.layout.fragment_place_review, container, false);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
         back_button = (Button) view.findViewById(R.id.button3);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -1,11 +1,11 @@
 package com.example.radhika.finalproject;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,10 +23,12 @@ import java.util.List;
 import static com.example.radhika.finalproject.HomePage.map_num;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
+    FloatingActionButton backButton;
     private GoogleMap mMap;
     private List<Place> Places;
+    View view;
     LatLng pos;
+
     private SupportMapFragment mapFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map));
         mapFragment.getMapAsync(this);
+        backButton = (FloatingActionButton) findViewById(R.id.floatingActionButton4);
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -135,7 +147,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 findViewById(R.id.legend).setVisibility(View.INVISIBLE);
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.activity_maps, PlacePopUp.newInstance()).commit();
+                fragmentTransaction.replace(R.id.activity_maps, PlaceReview.newInstance()).commit();
             }
         });
 

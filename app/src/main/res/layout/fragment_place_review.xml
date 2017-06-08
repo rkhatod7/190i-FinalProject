@@ -6,7 +6,7 @@
     android:backgroundTint="@drawable/com_facebook_button_send_background"
     android:orientation="vertical"
     android:weightSum="5"
-    tools:context="com.example.radhika.finalproject.PlacePopUp">
+    tools:context="com.example.radhika.finalproject.PlaceReview">
 
 
     <LinearLayout
