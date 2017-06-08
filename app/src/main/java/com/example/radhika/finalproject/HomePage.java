@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class HomePage extends AppCompatActivity {
     static int map_num = 0;
@@ -14,8 +16,30 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        Button mapButton = (Button) findViewById(R.id.map_button);
-        Button locationButton = (Button) findViewById(R.id.location_button);
+        //Button mapButton = (Button) findViewById(R.id.map_button);
+        //Button locationButton = (Button) findViewById(R.id.location_button);
+
+        ImageButton mapButton = (ImageButton) findViewById(R.id.map_button);
+        ImageButton locationButton = (ImageButton) findViewById(R.id.location_button);
+
+        TextView mapText = (TextView) findViewById(R.id.mapText);
+        TextView locationText = (TextView) findViewById(R.id.locationText);
+
+        mapText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                map_num = 1;
+                openMap(v);
+            }
+        });
+
+        locationText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openList(v);
+            }
+        });
+
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
