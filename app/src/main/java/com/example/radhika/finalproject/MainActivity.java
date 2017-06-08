@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -21,9 +24,11 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
     private LoginButton loginButton;
-
+    TextView name;
     private ProfileTracker mProfileTracker;
 
 
@@ -39,8 +44,11 @@ public class MainActivity extends AppCompatActivity {
         loginButton = (LoginButton) findViewById(R.id.login_button);
         continueButton = (Button) findViewById(R.id.continue_button);
         profileImage = (ProfilePictureView) findViewById(R.id.profilePicture);
-
+        name = (TextView) findViewById(R.id.name);
         loginButton.setReadPermissions("email");
+
+
+
         // If using in a fragment
         //loginButton.setFragment(this);
         // Other app specific specialization
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         });
         Profile profile = Profile.getCurrentProfile();
         profileImage.setProfileId(profile.getId());
-
+        name.setText("Welcome " + profile.getFirstName() + "!");
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override

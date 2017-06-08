@@ -63,5 +63,17 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/profilePicture"
+        android:layout_alignRight="@+id/profilePicture"
+        android:layout_below="@+id/profilePicture"
+        android:layout_marginTop="27dp"
+        android:text="TextView"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp" />
+
 
 </RelativeLayout>
