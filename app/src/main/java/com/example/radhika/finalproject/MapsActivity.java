@@ -1,7 +1,12 @@
 package com.example.radhika.finalproject;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.app.FragmentTransaction;
+import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,16 +27,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private List<Place> Places;
     LatLng pos;
-
+    private SupportMapFragment mapFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        mapFragment = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map));
         mapFragment.getMapAsync(this);
+
     }
+
 
 
     /**
@@ -123,9 +129,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-
+//                fragment.show(getSupportFragmentManager(), "Attraction Detail");
+               View view = findViewById(R.id.map);
+                view.setVisibility(View.INVISIBLE);
+                findViewById(R.id.legend).setVisibility(View.INVISIBLE);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.activity_maps, PlacePopUp.newInstance()).commit();
             }
         });
-    }
+
+
+   }
+
+   public void showPopup()
+   {
+       // TODO ADD CONFIRMATION DIALOG
+       AddEntryFragment.newInstance().show(getSupportFragmentManager(),"Add entry");
+   }
 
 }

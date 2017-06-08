@@ -1,28 +1,27 @@
 package com.example.radhika.finalproject;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.design.widget.FloatingActionButton;
-import android.view.KeyEvent;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-// TODO REFACTOR NAME BECAUSE THIS ACTUALLY ISNT A POPUP ANYMORE
-public class PlacePopUp extends Fragment {
+
+public class AddEntryFragment extends DialogFragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    MapsActivity mActivity;
-    Context mContext;
-    public PlacePopUp() {
+
+
+    public AddEntryFragment() {
         // Required empty public constructor
     }
 
@@ -32,15 +31,11 @@ public class PlacePopUp extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PlacePopUp.
+     * @return A new instance of fragment AddEntryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PlacePopUp newInstance() {
-        PlacePopUp fragment = new PlacePopUp();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
+    public static AddEntryFragment newInstance( ) {
+        AddEntryFragment fragment = new AddEntryFragment();
         return fragment;
     }
 
@@ -57,26 +52,17 @@ public class PlacePopUp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_place_pop_up, container, false);
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mActivity.showPopup();
-            }
-        });
-
-
+        View view = inflater.inflate(R.layout.fragment_add_entry, container, false);
         return view;
     }
 
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mActivity =  (MapsActivity) context;
-
-
     }
 
     @Override
@@ -84,4 +70,14 @@ public class PlacePopUp extends Fragment {
         super.onDetach();
     }
 
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
 }
