@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@drawable/com_facebook_button_send_background"
     android:orientation="vertical"
     android:weightSum="5"
     tools:context="com.example.radhika.finalproject.PlacePopUp">
@@ -27,7 +28,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.75"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="20dp">
@@ -47,20 +48,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1.5"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        android:padding="@dimen/com_facebook_likeboxcountview_text_padding" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:gravity="top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/com_facebook_share_button_padding_right">
         android:layout_weight="1"
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Comments:"
             android:textSize="36sp" />
 
@@ -78,11 +81,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@android:color/transparent"
                     android:clickable="false"
                     android:ems="10"
                     android:inputType="textMultiLine"
-                    android:maxLines="3"
+                    android:maxLines="4"
                     android:text="jacob is\n so fucking\n smart\n . . . \n . . .\n . . .\n jk." />
             </LinearLayout>
 
@@ -95,6 +97,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.75"
         android:gravity="bottom|right"
         android:orientation="horizontal">
 
