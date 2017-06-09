@@ -1,6 +1,8 @@
 package com.example.radhika.finalproject;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,12 +29,14 @@ import com.firebase.client.Firebase;
 
 import org.w3c.dom.Text;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     private LoginButton loginButton;
     TextView name;
     private ProfileTracker mProfileTracker;
 
-
+    public static Profile profile;
     CallbackManager callbackManager;
     Button continueButton;
     ProfilePictureView profileImage;
@@ -46,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
         continueButton = (Button) findViewById(R.id.continue_button);
         profileImage = (ProfilePictureView) findViewById(R.id.profilePicture);
         name = (TextView) findViewById(R.id.name);
+        TextView appName = (TextView) findViewById(R.id.appName);
+
         loginButton.setReadPermissions("email");
+
 
         // firebase
         Firebase.setAndroidContext(this);
@@ -64,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Profile profile = Profile.getCurrentProfile();
+        profile = Profile.getCurrentProfile();
         profileImage.setProfileId(profile.getId());
         name.setText("Welcome " + profile.getFirstName() + "!");
         LoginManager.getInstance().registerCallback(callbackManager,
@@ -107,26 +114,8 @@ public class MainActivity extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d("RADHIKA", "in on success");
                 // App code
-                if(Profile.getCurrentProfile() == null) {
-                    mProfileTracker = new ProfileTracker() {
-                        @Override
-                        protected void onCurrentProfileChanged(Profile profile, Profile profile2) {
-                            // profile2 is the new profile
-                            Log.v("facebook - profile", profile2.getFirstName());
-                            mProfileTracker.stopTracking();
-                        }
-                    };
-                    // no need to call startTracking() on mProfileTracker
-                    // because it is called by its constructor, internally.
-                }
-                else {
-                    Profile profile = Profile.getCurrentProfile();
-                    profileImage.setProfileId(profile.getId());
 
-                    Log.v("facebook - profile", profile.getFirstName());
-                }
             }
 
             @Override
