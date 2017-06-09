@@ -21,7 +21,7 @@
             android:padding="20dp"
             android:text="This popup is so the user can add its own entry about the POINT OF INTEREST"
             android:textColor="@color/colorPrimary"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:text="Location Rating:"
             android:textColor="@color/colorPrimary"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -64,8 +64,8 @@
             android:layout_weight="1"
             android:hint="Enter Comment"
             android:inputType="textNoSuggestions|textAutoCorrect|textAutoComplete"
-            android:textColor="@color/colorPrimary"
-            android:textSize="36sp" />
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

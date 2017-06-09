@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -169,7 +171,8 @@ public class AddEntryFragment extends DialogFragment {
                     //File file = new File(picturePath);
                     File file = new File("" + uri);
                     String imageFilename = file.getName();
-                    photoText.setText(imageFilename);
+                        photoText.setText(imageFilename);
+                    photoText.setPaintFlags(photoText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
                     photoText.setTextColor(Color.BLUE);
 
                     //Get the image bitmap
