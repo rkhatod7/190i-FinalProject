@@ -73,14 +73,14 @@
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginBottom="12dp"
-        android:clickable="true"
-        app:fabSize="mini"
-        app:srcCompat="?attr/actionModeCloseDrawable"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
 
 </RelativeLayout>
