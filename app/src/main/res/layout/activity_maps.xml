@@ -24,12 +24,14 @@
         android:src="@drawable/map_legend" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton4"
+        android:id="@+id/fabBackMaps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:layout_gravity="bottom|left"
-        app:fabSize="mini"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="12dp"
+        android:clickable="true"
+        app:fabSize="normal"
         app:srcCompat="?attr/actionModeCloseDrawable" />
 
 </FrameLayout>

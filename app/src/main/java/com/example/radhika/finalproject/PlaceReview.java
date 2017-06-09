@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 public class PlaceReview extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    Button back_button;
+    FloatingActionButton back_button;
     EditText tv;
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -66,7 +66,7 @@ public class PlaceReview extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_place_review, container, false);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
-        back_button = (Button) view.findViewById(R.id.button3);
+        back_button = (FloatingActionButton) view.findViewById(R.id.fabBackPlaceReview);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

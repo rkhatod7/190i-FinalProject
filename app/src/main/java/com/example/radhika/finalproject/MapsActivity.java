@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,6 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<Place> Places;
     View view;
     LatLng pos;
+    TextView textViewComments;
 
     private SupportMapFragment mapFragment;
     @Override
@@ -37,7 +39,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map));
         mapFragment.getMapAsync(this);
-        backButton = (FloatingActionButton) findViewById(R.id.floatingActionButton4);
+        backButton = (FloatingActionButton) findViewById(R.id.fabBackMaps);
+        textViewComments = (TextView) findViewById(R.id.tvComments);
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +149,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                View view = findViewById(R.id.map);
                 view.setVisibility(View.INVISIBLE);
                 findViewById(R.id.legend).setVisibility(View.INVISIBLE);
+                findViewById(R.id.fabBackMaps).setVisibility(View.INVISIBLE);
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.activity_maps, PlaceReview.newInstance(marker.getTitle(), place_id));
@@ -160,6 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
    {
        // TODO ADD CONFIRMATION DIALOG
        AddEntryFragment.newInstance().show(getSupportFragmentManager(),"Add entry");
+       findViewById(R.id.fabBackMaps).setVisibility(View.INVISIBLE);
    }
 
 }

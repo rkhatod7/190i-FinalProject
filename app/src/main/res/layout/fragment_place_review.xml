@@ -118,14 +118,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="bottom|left"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/button3"
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabBackPlaceReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="12dp"
                 android:layout_weight="1"
-                android:text="back button" />
+                android:clickable="true"
+                app:fabSize="normal"
+                app:srcCompat="?android:attr/actionModeCloseDrawable" />
 
         </LinearLayout>
 
