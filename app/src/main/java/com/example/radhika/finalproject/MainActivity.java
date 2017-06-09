@@ -23,6 +23,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
+import com.firebase.client.Firebase;
 
 import org.w3c.dom.Text;
 
@@ -46,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         profileImage = (ProfilePictureView) findViewById(R.id.profilePicture);
         name = (TextView) findViewById(R.id.name);
         loginButton.setReadPermissions("email");
+
+        // firebase
+        Firebase.setAndroidContext(this);
 
 
 

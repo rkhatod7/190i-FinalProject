@@ -142,12 +142,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onInfoWindowClick(Marker marker) {
 //                fragment.show(getSupportFragmentManager(), "Attraction Detail");
+                String place_id = marker.getId();
                View view = findViewById(R.id.map);
                 view.setVisibility(View.INVISIBLE);
                 findViewById(R.id.legend).setVisibility(View.INVISIBLE);
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.activity_maps, PlaceReview.newInstance()).commit();
+                fragmentTransaction.replace(R.id.activity_maps, PlaceReview.newInstance(marker.getTitle(), place_id));
+                fragmentTransaction.commit();
             }
         });
 

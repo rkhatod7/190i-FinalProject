@@ -5,16 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 // TODO REFACTOR NAME BECAUSE THIS ACTUALLY ISNT A POPUP ANYMORE
 public class PlaceReview extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     Button back_button;
+    EditText tv;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -33,7 +42,7 @@ public class PlaceReview extends Fragment {
      * @return A new instance of fragment PlaceReview.
      */
     // TODO: Rename and change types and number of parameters
-    public static PlaceReview newInstance() {
+    public static PlaceReview newInstance(String title, String place_id) {
         PlaceReview fragment = new PlaceReview();
 //        Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
@@ -62,6 +71,33 @@ public class PlaceReview extends Fragment {
             @Override
             public void onClick(View view) {
                 mActivity.showPopup();
+            }
+        });
+
+        tv = (EditText) view.findViewById(R.id.tvComments);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference placeDetailsTable = database.getReference("PlaceDetails");
+        DatabaseReference imagesTable = database.getReference("Images");
+        DatabaseReference imagePostsTable = database.getReference("ImagePosts");
+
+        // PlaceDetail(rating, count, comment);
+        placeDetailsTable.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
+                    PlaceDetail value = singleSnapshot.getValue(PlaceDetail.class);
+                    Log.d("DREW", value.rating);
+                    Log.d("DREW", value.count);
+                    Log.d("DREW", value.comment);
+                    tv.setText(value.comment);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("DREW", "Failed to read value.", error.toException());
             }
         });
 

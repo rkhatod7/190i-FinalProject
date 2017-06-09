@@ -1,25 +1,35 @@
 package com.example.radhika.finalproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.client.Firebase;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 
 public class AddEntryFragment extends DialogFragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    DatabaseReference placeDetailsTable;
+    DatabaseReference imagesTable;
+    DatabaseReference imagePostsTable;
+    FirebaseDatabase database;
+    FloatingActionButton fab;
 
     public AddEntryFragment() {
         // Required empty public constructor
@@ -43,8 +53,7 @@ public class AddEntryFragment extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -53,6 +62,23 @@ public class AddEntryFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_entry, container, false);
+
+        fab = (FloatingActionButton) view.findViewById(R.id.btnSubmit);
+
+        database = FirebaseDatabase.getInstance();
+        placeDetailsTable = database.getReference("PlaceDetails");
+        DatabaseReference imagesTable = database.getReference("Images");
+        DatabaseReference imagePostsTable = database.getReference("ImagePosts");
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PlaceDetail pd = new PlaceDetail("4.2", "5", "hello this is a new comment");
+                placeDetailsTable.child("3").setValue(pd);
+            }
+        });
+
+
         return view;
     }
 
