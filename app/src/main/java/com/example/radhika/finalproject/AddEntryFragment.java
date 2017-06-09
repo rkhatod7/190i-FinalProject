@@ -94,6 +94,7 @@ public class AddEntryFragment extends DialogFragment {
 
         fab = (FloatingActionButton) view.findViewById(R.id.btnSubmit);
         textViewTitle = (TextView) view.findViewById(R.id.tvTitleAddEntry);
+        commentView = (TextView) view.findViewById(R.id.editTextComment);
 
         database = FirebaseDatabase.getInstance();
         placeDetailsTable = database.getReference("PlaceDetails");
@@ -113,7 +114,6 @@ public class AddEntryFragment extends DialogFragment {
         });
 
         //******CHANGES START HERE******
-        commentView = (TextView) view.findViewById(R.id.textView4);
         photoText = (TextView) view.findViewById(R.id.textView5);
         FloatingActionButton camera = (FloatingActionButton) view.findViewById(R.id.floatingActionButton2);
         camera.setOnClickListener(new View.OnClickListener() {
