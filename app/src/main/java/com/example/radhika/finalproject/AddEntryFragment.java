@@ -38,6 +38,8 @@ import static android.app.Activity.RESULT_OK;
 
 public class AddEntryFragment extends DialogFragment {
 
+    private static final String ARG_TITLE = "TITLE";
+    private static final String ARG_PLACE_ID = "PLACE_ID";
     DatabaseReference placeDetailsTable;
     DatabaseReference imagesTable;
     DatabaseReference imagePostsTable;
@@ -49,6 +51,7 @@ public class AddEntryFragment extends DialogFragment {
     TextView photoText;
     Bitmap bitmap;
     TextView commentView;
+    TextView textViewTitle;
 
     public AddEntryFragment() {
         // Required empty public constructor
@@ -63,8 +66,12 @@ public class AddEntryFragment extends DialogFragment {
      * @return A new instance of fragment AddEntryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddEntryFragment newInstance( ) {
+    public static AddEntryFragment newInstance(String title, String place_id) {
         AddEntryFragment fragment = new AddEntryFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_TITLE, title);
+        args.putString(ARG_PLACE_ID, place_id);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -86,11 +93,15 @@ public class AddEntryFragment extends DialogFragment {
         final String name = currentProfile.getFirstName();
 
         fab = (FloatingActionButton) view.findViewById(R.id.btnSubmit);
+        textViewTitle = (TextView) view.findViewById(R.id.tvTitleAddEntry);
 
         database = FirebaseDatabase.getInstance();
         placeDetailsTable = database.getReference("PlaceDetails");
         DatabaseReference imagesTable = database.getReference("Images");
         DatabaseReference imagePostsTable = database.getReference("ImagePosts");
+
+        // Set title
+        textViewTitle.setText(getArguments().getString(ARG_TITLE));
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

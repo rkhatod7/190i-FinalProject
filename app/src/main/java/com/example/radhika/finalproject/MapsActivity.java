@@ -144,7 +144,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-//                fragment.show(getSupportFragmentManager(), "Attraction Detail");
                 String place_id = marker.getId();
                View view = findViewById(R.id.map);
                 view.setVisibility(View.INVISIBLE);
@@ -160,10 +159,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
    }
 
-   public void showPopup()
+   public void showPopup(String title, String place_id)
    {
        // TODO ADD CONFIRMATION DIALOG
-       AddEntryFragment.newInstance().show(getSupportFragmentManager(),"Add entry");
+       AddEntryFragment.newInstance(title, place_id).show(getSupportFragmentManager(),"Add entry");
        findViewById(R.id.fabBackMaps).setVisibility(View.INVISIBLE);
    }
 

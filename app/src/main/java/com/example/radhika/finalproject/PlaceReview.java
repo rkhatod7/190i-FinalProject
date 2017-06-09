@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,15 +21,16 @@ import com.google.firebase.database.ValueEventListener;
 
 // TODO REFACTOR NAME BECAUSE THIS ACTUALLY ISNT A POPUP ANYMORE
 public class PlaceReview extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_TITLE = "title";
+    private static final String ARG_PLACE_ID = "place_id";
     FloatingActionButton back_button;
     EditText tv;
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String mTitle;
+    private String mPlace_id;
     MapsActivity mActivity;
     Context mContext;
+    TextView textViewTitle;
     public PlaceReview() {
         // Required empty public constructor
     }
@@ -44,10 +46,10 @@ public class PlaceReview extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static PlaceReview newInstance(String title, String place_id) {
         PlaceReview fragment = new PlaceReview();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
+        Bundle args = new Bundle();
+        args.putString(ARG_TITLE, title);
+        args.putString(ARG_PLACE_ID, place_id);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -55,8 +57,8 @@ public class PlaceReview extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mTitle = getArguments().getString(ARG_TITLE);
+            mPlace_id = getArguments().getString(ARG_PLACE_ID);
         }
     }
 
@@ -67,10 +69,16 @@ public class PlaceReview extends Fragment {
         View view = inflater.inflate(R.layout.fragment_place_review, container, false);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
         back_button = (FloatingActionButton) view.findViewById(R.id.fabBackPlaceReview);
+        textViewTitle = (TextView) view.findViewById(R.id.textViewTitlePlaceReview);
+
+        // Set title
+        textViewTitle.setText(getArguments().getString(ARG_TITLE));
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mActivity.showPopup();
+                mActivity.showPopup(mTitle, mPlace_id);
             }
         });
 
