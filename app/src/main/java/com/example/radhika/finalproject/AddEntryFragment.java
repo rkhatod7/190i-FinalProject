@@ -1,17 +1,27 @@
 package com.example.radhika.finalproject;
 
+import android.*;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.facebook.Profile;
 import com.firebase.client.Firebase;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +30,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
 import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class AddEntryFragment extends DialogFragment {
@@ -30,6 +43,12 @@ public class AddEntryFragment extends DialogFragment {
     DatabaseReference imagePostsTable;
     FirebaseDatabase database;
     FloatingActionButton fab;
+
+    //CHANGES
+    private static final int REQ_CODE_GET_IMAGE = 0;
+    TextView photoText;
+    Bitmap bitmap;
+    TextView commentView;
 
     public AddEntryFragment() {
         // Required empty public constructor
@@ -63,6 +82,9 @@ public class AddEntryFragment extends DialogFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_entry, container, false);
 
+        Profile currentProfile = Profile.getCurrentProfile();
+        final String name = currentProfile.getFirstName();
+
         fab = (FloatingActionButton) view.findViewById(R.id.btnSubmit);
 
         database = FirebaseDatabase.getInstance();
@@ -73,14 +95,89 @@ public class AddEntryFragment extends DialogFragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PlaceDetail pd = new PlaceDetail("4.2", "5", "hello this is a new comment");
+                String comment = name + ": " + commentView.getText().toString();
+                PlaceDetail pd = new PlaceDetail("4.2", "5", comment);
                 placeDetailsTable.child("3").setValue(pd);
+            }
+        });
+
+        //******CHANGES START HERE******
+        commentView = (TextView) view.findViewById(R.id.textView4);
+        photoText = (TextView) view.findViewById(R.id.textView5);
+        FloatingActionButton camera = (FloatingActionButton) view.findViewById(R.id.floatingActionButton2);
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                        || ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                        || ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQ_CODE_GET_IMAGE);
+                }
+                if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                        && ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                        && ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
+                    launchGallery();
+
+                }
+
             }
         });
 
 
         return view;
     }
+
+    //CHANGES****
+    public void launchGallery(){
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+
+        //intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, getPhotoFileUri(photoFilename));
+        startActivityForResult(intent, REQ_CODE_GET_IMAGE);
+
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(resultCode == RESULT_OK){
+            switch (requestCode) {
+                case REQ_CODE_GET_IMAGE:
+                    try {
+
+
+                    Uri uri = data.getData();
+                    String[] filepath = {MediaStore.Images.Media.DATA};
+                    Cursor cursor = getActivity().getContentResolver().query(uri, filepath, null, null, null);
+                    cursor.moveToFirst();
+                    int columnIndex = cursor.getColumnIndex(filepath[0]);
+                    String picturePath = cursor.getString(columnIndex);
+                    cursor.close();
+
+                    //File file = new File(picturePath);
+                    File file = new File("" + uri);
+                    String imageFilename = file.getName();
+                    photoText.setText(imageFilename);
+                    photoText.setTextColor(Color.BLUE);
+
+                    //Get the image bitmap
+                    bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                    break;
+
+                default:
+                    Log.d("Taylor","Request code is: " + requestCode);
+
+
+            }
+        }
+
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
