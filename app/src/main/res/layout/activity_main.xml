@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="49dp"
-        android:layout_above="@+id/continue_button"
+        android:layout_marginTop="63dp"
+        android:layout_alignTop="@+id/continue_button"
         android:layout_centerHorizontal="true" />
 
     <com.facebook.login.widget.ProfilePictureView
@@ -30,27 +30,19 @@
         android:layout_marginTop="12dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/login_button"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/login_button"
-        android:layout_marginTop="43dp"
-        android:text="Welcome to Map App"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_alignRight="@+id/textView"
-        android:layout_below="@+id/textView"
-        android:layout_marginEnd="33dp"
-        android:layout_marginRight="33dp"
-        android:layout_marginTop="112dp"
-        android:text="PUT LOGO HERE" />
+        android:layout_marginBottom="36dp"
+        android:text="Scout"
+        android:typeface="serif"
+        android:textColor="@color/colorAccent"
+        android:textSize="60sp"
+        android:layout_alignBottom="@+id/name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="52dp"
+        android:layout_marginStart="52dp" />
 
     <Button
         android:id="@+id/continue_button"
@@ -58,10 +50,10 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:text="Continue to home page"
-        android:layout_marginBottom="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="164dp" />
 
     <TextView
         android:id="@+id/name"
