@@ -2,6 +2,7 @@ package com.example.radhika.finalproject;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,15 @@ public class HomePage extends AppCompatActivity {
 
         TextView mapText = (TextView) findViewById(R.id.mapText);
         TextView locationText = (TextView) findViewById(R.id.locationText);
+        FloatingActionButton backButton = (FloatingActionButton) findViewById(R.id.back_button);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mapText.setOnClickListener(new View.OnClickListener() {
             @Override
