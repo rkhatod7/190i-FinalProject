@@ -89,14 +89,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@color/com_facebook_button_background_color_focused"
-                    android:focusable="false"
+                    android:background="@color/colorPrimaryDark"
                     android:clickable="false"
                     android:ems="10"
+                    android:focusable="false"
                     android:inputType="textMultiLine"
                     android:maxLines="4"
                     android:text="jacob is\n so so so so so so so so so so sos oso so so so so sos oso fucking\n smart\n . . . \n . . .\n . . .\n jk."
-                    android:textColor="@color/com_facebook_button_background_color_focused_disabled"
+                    android:textColor="@color/cardview_dark_background"
                     tools:clickable="false" />
             </LinearLayout>
 
