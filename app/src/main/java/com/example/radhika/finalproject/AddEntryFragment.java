@@ -47,6 +47,10 @@ public class AddEntryFragment extends DialogFragment {
     DatabaseReference imagePostsTable;
     FirebaseDatabase database;
     FloatingActionButton fab;
+    String place_id;
+    String comment;
+    int temp_count;
+    float temp_rating;
 
     //CHANGES
     private static final int REQ_CODE_GET_IMAGE = 0;
@@ -105,13 +109,51 @@ public class AddEntryFragment extends DialogFragment {
 
         // Set title
         textViewTitle.setText(getArguments().getString(ARG_TITLE));
+        place_id = getArguments().getString(ARG_PLACE_ID);
+        Log.d("DREW", place_id);
 
+        placeDetailsTable.child(place_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                PlaceDetail value = dataSnapshot.getValue(PlaceDetail.class);
+                if (value != null) {
+                    try {
+                        Log.d("DREW", "attempting to update comments...");
+                        temp_count = Integer.parseInt(value.count);
+                        temp_rating = Float.parseFloat(value.rating);
+                        if (value.comment != null) {
+                            comment = value.comment;
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("DREW", "Failed to read value.", error.toException());
+            }
+        });
+
+        // PlaceDetail(rating, count, comment);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String comment = name + ": " + commentView.getText().toString();
+                if (commentView.getText() != null && comment != null) {
+                    comment += "\n";
+                    comment += name + ": " + commentView.getText().toString();
+                }
+                else if (comment != null) {
+                    comment = name + ": " + commentView.getText().toString();
+                }
+                else {
+                    comment = "";
+                }
+                Log.d("Drew", comment);
                 PlaceDetail pd = new PlaceDetail("4.2", "5", comment);
-                placeDetailsTable.child("3").setValue(pd);
+                placeDetailsTable.child(place_id).setValue(pd);
+                Log.d("DREW", "hit this");
             }
         });
 
@@ -160,23 +202,23 @@ public class AddEntryFragment extends DialogFragment {
                     try {
 
 
-                    Uri uri = data.getData();
-                    String[] filepath = {MediaStore.Images.Media.DATA};
-                    Cursor cursor = getActivity().getContentResolver().query(uri, filepath, null, null, null);
-                    cursor.moveToFirst();
-                    int columnIndex = cursor.getColumnIndex(filepath[0]);
-                    String picturePath = cursor.getString(columnIndex);
-                    cursor.close();
+                        Uri uri = data.getData();
+                        String[] filepath = {MediaStore.Images.Media.DATA};
+                        Cursor cursor = getActivity().getContentResolver().query(uri, filepath, null, null, null);
+                        cursor.moveToFirst();
+                        int columnIndex = cursor.getColumnIndex(filepath[0]);
+                        String picturePath = cursor.getString(columnIndex);
+                        cursor.close();
 
-                    //File file = new File(picturePath);
-                    File file = new File("" + uri);
-                    String imageFilename = file.getName();
+                        //File file = new File(picturePath);
+                        File file = new File("" + uri);
+                        String imageFilename = file.getName();
                         photoText.setText(imageFilename);
-                    photoText.setPaintFlags(photoText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-                    photoText.setTextColor(Color.BLUE);
+                        photoText.setPaintFlags(photoText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                        photoText.setTextColor(Color.BLUE);
 
-                    //Get the image bitmap
-                    bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+                        //Get the image bitmap
+                        bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
                     } catch (Exception e){
                         e.printStackTrace();
                     }
