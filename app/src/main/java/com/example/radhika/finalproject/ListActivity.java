@@ -1,6 +1,7 @@
 package com.example.radhika.finalproject;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import static com.example.radhika.finalproject.HomePage.map_num;
 public class ListActivity extends AppCompatActivity {
 
     private ListView listView;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         listView = (ListView) findViewById(R.id.listView);
+        fab = (FloatingActionButton) findViewById(R.id.fabPopular);
         ArrayList<String > arrayList = new ArrayList<String>();
         arrayList.add("Berlin");
         arrayList.add("Rome");
@@ -64,5 +67,13 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                startActivity(intent);
+            }
+        });
     }
 }
