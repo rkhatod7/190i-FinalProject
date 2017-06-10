@@ -77,14 +77,6 @@ public class AddEntryFragment extends DialogFragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddEntryFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static AddEntryFragment newInstance(String title, String place_id) {
         AddEntryFragment fragment = new AddEntryFragment();
@@ -127,8 +119,9 @@ public class AddEntryFragment extends DialogFragment {
         // for pin details
         database = FirebaseDatabase.getInstance();
         placeDetailsTable = database.getReference("PlaceDetails");
+        imagesTable = database.getReference("Images");
 
-        // for images of pins
+        // for images of places
         storage = FirebaseStorage.getInstance();
 
 
@@ -210,6 +203,7 @@ public class AddEntryFragment extends DialogFragment {
                             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
                             @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
                             Log.d("DREW", "screenshot captured");
+                            imagesTable.child(place_id).child(imageKey).setValue(downloadUrl.toString());
                         }
                     });
                 }
@@ -292,8 +286,6 @@ public class AddEntryFragment extends DialogFragment {
 
                 default:
                     Log.d("Taylor","Request code is: " + requestCode);
-
-
             }
         }
 

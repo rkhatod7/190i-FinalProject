@@ -2,9 +2,13 @@ package com.example.radhika.finalproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.Rating;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,11 +19,19 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.lang.reflect.Array;
+import java.net.URL;
+import java.util.ArrayList;
 
 // TODO REFACTOR NAME BECAUSE THIS ACTUALLY ISNT A POPUP ANYMORE
 public class PlaceReview extends Fragment {
@@ -31,10 +43,11 @@ public class PlaceReview extends Fragment {
     private String mTitle;
     private String mPlace_id;
     MapsActivity mActivity;
-    Context mContext;
     TextView textViewTitle;
     String place_id;
     RatingBar ratingBar;
+    FirebaseStorage storage;
+    Bitmap bitmap;
 
     public PlaceReview() {
         // Required empty public constructor
@@ -80,7 +93,6 @@ public class PlaceReview extends Fragment {
         // Set title
         textViewTitle.setText(getArguments().getString(ARG_TITLE));
 
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,9 +105,34 @@ public class PlaceReview extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference placeDetailsTable = database.getReference("PlaceDetails");
         DatabaseReference imagesTable = database.getReference("Images");
-        DatabaseReference imagePostsTable = database.getReference("ImagePosts");
-
+        storage = FirebaseStorage.getInstance();
         place_id = getArguments().getString(ARG_PLACE_ID);
+
+        imagesTable.child(place_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Bitmap> images = new ArrayList<Bitmap>();
+                for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
+                    String value = singleSnapshot.getValue(String.class);
+                    Uri mUri = Uri.parse(value);
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(mActivity.getContentResolver(), mUri);
+                    }
+                    catch (Exception e) {
+                        Log.d("DREW", "failed to convert to bitmap");
+                    }
+                    images.add(bitmap);
+                }
+                Log.d("DREW", "succesful");
+                Log.d("DREW", Integer.toString(images.size()));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("DREW", "Failed to read value.", error.toException());
+            }
+        });
 
         // PlaceDetail(rating, count, comment);
         placeDetailsTable.child(place_id).addValueEventListener(new ValueEventListener() {
