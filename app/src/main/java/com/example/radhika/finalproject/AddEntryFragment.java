@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
@@ -25,13 +26,19 @@ import android.widget.TextView;
 
 import com.facebook.Profile;
 import com.firebase.client.Firebase;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -47,6 +54,13 @@ public class AddEntryFragment extends DialogFragment {
     DatabaseReference imagePostsTable;
     FirebaseDatabase database;
     FloatingActionButton fab;
+    String place_id;
+    String comment;
+    String imageKey;
+    int temp_count;
+    float temp_rating;
+    FirebaseStorage storage;
+    String name;
 
     //CHANGES
     private static final int REQ_CODE_GET_IMAGE = 0;
@@ -92,26 +106,92 @@ public class AddEntryFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_add_entry, container, false);
 
         Profile currentProfile = Profile.getCurrentProfile();
-        final String name = currentProfile.getFirstName();
+        if (currentProfile != null) {
+            name = currentProfile.getFirstName();
+        }
+        else {
+            name = "Anonymous";
+        }
 
         fab = (FloatingActionButton) view.findViewById(R.id.btnSubmit);
         textViewTitle = (TextView) view.findViewById(R.id.tvTitleAddEntry);
         commentView = (TextView) view.findViewById(R.id.editTextComment);
 
+        // for pin details
         database = FirebaseDatabase.getInstance();
         placeDetailsTable = database.getReference("PlaceDetails");
-        DatabaseReference imagesTable = database.getReference("Images");
-        DatabaseReference imagePostsTable = database.getReference("ImagePosts");
+
+        // for images of pins
+        storage = FirebaseStorage.getInstance();
+
 
         // Set title
         textViewTitle.setText(getArguments().getString(ARG_TITLE));
+        place_id = getArguments().getString(ARG_PLACE_ID);
+        Log.d("DREW", place_id);
 
+        placeDetailsTable.child(place_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                PlaceDetail value = dataSnapshot.getValue(PlaceDetail.class);
+                if (value != null) {
+                    try {
+                        Log.d("DREW", "attempting to update comments...");
+                        temp_count = Integer.parseInt(value.count);
+                        temp_rating = Float.parseFloat(value.rating);
+                        if (value.comment != null) {
+                            comment = value.comment;
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("DREW", "Failed to read value.", error.toException());
+            }
+        });
+
+        // PlaceDetail(rating, count, comment);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String comment = name + ": " + commentView.getText().toString();
+                if (commentView.getText() != null && comment != null) {
+                    comment += "\n";
+                    comment += name + ": " + commentView.getText().toString();
+                }
+                else if (comment != null) {
+                    comment = name + ": " + commentView.getText().toString();
+                }
+                else {
+                    comment = "";
+                }
+                Log.d("Drew", comment);
                 PlaceDetail pd = new PlaceDetail("4.2", "5", comment);
-                placeDetailsTable.child("3").setValue(pd);
+                placeDetailsTable.child(place_id).setValue(pd);
+                Log.d("DREW", "hit this");
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] data = baos.toByteArray();
+
+                UploadTask uploadTask = storage.getReference().child(place_id).child(imageKey).putBytes(data);
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                        @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                        Log.d("DREW", "screenshot captured");
+                    }
+                });
+                closeFragment();
             }
         });
 
@@ -141,6 +221,8 @@ public class AddEntryFragment extends DialogFragment {
         return view;
     }
 
+
+
     //CHANGES****
     public void launchGallery(){
         Intent intent = new Intent();
@@ -158,25 +240,28 @@ public class AddEntryFragment extends DialogFragment {
             switch (requestCode) {
                 case REQ_CODE_GET_IMAGE:
                     try {
+                        Uri uri = data.getData();
+                        String[] filepath = {MediaStore.Images.Media.DATA};
+                        Cursor cursor = getActivity().getContentResolver().query(uri, filepath, null, null, null);
+                        cursor.moveToFirst();
+                        int columnIndex = cursor.getColumnIndex(filepath[0]);
+                        String picturePath = cursor.getString(columnIndex);
+                        cursor.close();
 
+                        //File file = new File(picturePath);
+                        File file = new File("" + uri);
+                        String imageFilename = file.getName();
 
-                    Uri uri = data.getData();
-                    String[] filepath = {MediaStore.Images.Media.DATA};
-                    Cursor cursor = getActivity().getContentResolver().query(uri, filepath, null, null, null);
-                    cursor.moveToFirst();
-                    int columnIndex = cursor.getColumnIndex(filepath[0]);
-                    String picturePath = cursor.getString(columnIndex);
-                    cursor.close();
-
-                    //File file = new File(picturePath);
-                    File file = new File("" + uri);
-                    String imageFilename = file.getName();
                         photoText.setText(imageFilename);
-                    photoText.setPaintFlags(photoText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-                    photoText.setTextColor(Color.BLUE);
+                        photoText.setPaintFlags(photoText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                        photoText.setTextColor(Color.BLUE);
 
-                    //Get the image bitmap
-                    bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+                        //Get the image bitmap
+                        bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+
+                        // necessary for uploading to firebase
+                        imageKey = imageFilename;
+
                     } catch (Exception e){
                         e.printStackTrace();
                     }
@@ -205,6 +290,10 @@ public class AddEntryFragment extends DialogFragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    public void closeFragment(){
+        getDialog().dismiss();
     }
 
     /**

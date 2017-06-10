@@ -72,43 +72,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         profile = Profile.getCurrentProfile();
-        profileImage.setProfileId(profile.getId());
-        name.setText("Welcome " + profile.getFirstName() + "!");
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        if(Profile.getCurrentProfile() == null) {
-                            mProfileTracker = new ProfileTracker() {
-                                @Override
-                                protected void onCurrentProfileChanged(Profile profile, Profile profile2) {
-                                    // profile2 is the new profile
-                                    Log.v("facebook - profile", profile2.getFirstName());
-                                    mProfileTracker.stopTracking();
-                                }
-                            };
-                            // no need to call startTracking() on mProfileTracker
-                            // because it is called by its constructor, internally.
+        if (profile != null) {
+            profileImage.setProfileId(profile.getId());
+            name.setText("Welcome " + profile.getFirstName() + "!");
+            LoginManager.getInstance().registerCallback(callbackManager,
+                    new FacebookCallback<LoginResult>() {
+                        @Override
+                        public void onSuccess(LoginResult loginResult) {
+                            if (Profile.getCurrentProfile() == null) {
+                                mProfileTracker = new ProfileTracker() {
+                                    @Override
+                                    protected void onCurrentProfileChanged(Profile profile, Profile profile2) {
+                                        // profile2 is the new profile
+                                        Log.v("facebook - profile", profile2.getFirstName());
+                                        mProfileTracker.stopTracking();
+                                    }
+                                };
+                                // no need to call startTracking() on mProfileTracker
+                                // because it is called by its constructor, internally.
+                            } else {
+                                Profile profile = Profile.getCurrentProfile();
+                                profileImage.setProfileId(profile.getId());
+
+                                Log.v("facebook - profile", profile.getFirstName());
+                            }
+                            // App code
                         }
-                        else {
-                            Profile profile = Profile.getCurrentProfile();
-                            profileImage.setProfileId(profile.getId());
 
-                            Log.v("facebook - profile", profile.getFirstName());
+                        @Override
+                        public void onCancel() {
+                            // App code
                         }
-                        // App code
-                    }
 
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
+                        @Override
+                        public void onError(FacebookException exception) {
+                            // App code
+                        }
+                    });
+        }
 
         // Callback registration
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
