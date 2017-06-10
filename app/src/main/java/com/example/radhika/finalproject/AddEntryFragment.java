@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.icu.text.LocaleDisplayNames;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -22,6 +23,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.facebook.Profile;
@@ -61,6 +63,8 @@ public class AddEntryFragment extends DialogFragment {
     float temp_rating;
     FirebaseStorage storage;
     String name;
+    RatingBar ratingBar;
+    Float rating;
 
     //CHANGES
     private static final int REQ_CODE_GET_IMAGE = 0;
@@ -116,6 +120,9 @@ public class AddEntryFragment extends DialogFragment {
         fab = (FloatingActionButton) view.findViewById(R.id.btnSubmit);
         textViewTitle = (TextView) view.findViewById(R.id.tvTitleAddEntry);
         commentView = (TextView) view.findViewById(R.id.editTextComment);
+        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
+
+
 
         // for pin details
         database = FirebaseDatabase.getInstance();
@@ -141,6 +148,18 @@ public class AddEntryFragment extends DialogFragment {
                         temp_rating = Float.parseFloat(value.rating);
                         if (value.comment != null) {
                             comment = value.comment;
+                        }
+                        if (ratingBar.getRating() != 0) {
+                            Log.d("TAYLOR", "rating is bigger than 0");
+                            rating = ratingBar.getRating();
+                            Log.d("TAYLOR", Float.toString(rating));
+                            Log.d("TAYLOR", "rating is " + Float.toString(temp_rating));
+                            float total = temp_count * temp_rating;
+                            Log.d("TAYLOr", Float.toString(total));
+                            temp_count = temp_count + 1;
+                            total = total + rating;
+                            temp_rating = total / temp_count;
+                            Log.d("TAYLOR", "new rating is " + Float.toString(temp_rating));
                         }
                     } catch (Exception e) {
                     }
@@ -169,7 +188,8 @@ public class AddEntryFragment extends DialogFragment {
                     comment = "";
                 }
                 Log.d("Drew", comment);
-                PlaceDetail pd = new PlaceDetail("4.2", "5", comment);
+                Log.d("TAYLOR", "current rating is " + Float.toString(temp_rating));
+                PlaceDetail pd = new PlaceDetail(Float.toString(temp_rating), Integer.toString(temp_count), comment);
                 placeDetailsTable.child(place_id).setValue(pd);
                 Log.d("DREW", "hit this");
 
