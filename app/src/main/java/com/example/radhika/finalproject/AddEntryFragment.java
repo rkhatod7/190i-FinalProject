@@ -149,18 +149,6 @@ public class AddEntryFragment extends DialogFragment {
                         if (value.comment != null) {
                             comment = value.comment;
                         }
-                        if (ratingBar.getRating() != 0) {
-                            Log.d("TAYLOR", "rating is bigger than 0");
-                            rating = ratingBar.getRating();
-                            Log.d("TAYLOR", Float.toString(rating));
-                            Log.d("TAYLOR", "rating is " + Float.toString(temp_rating));
-                            float total = temp_count * temp_rating;
-                            Log.d("TAYLOr", Float.toString(total));
-                            temp_count = temp_count + 1;
-                            total = total + rating;
-                            temp_rating = total / temp_count;
-                            Log.d("TAYLOR", "new rating is " + Float.toString(temp_rating));
-                        }
                     } catch (Exception e) {
                     }
                 }
@@ -188,6 +176,18 @@ public class AddEntryFragment extends DialogFragment {
                     comment = "";
                 }
                 Log.d("Drew", comment);
+                if (ratingBar.getRating() != 0) {
+                    Log.d("TAYLOR", "rating is bigger than 0");
+                    rating = ratingBar.getRating();
+                    Log.d("TAYLOR", Float.toString(rating));
+                    Log.d("TAYLOR", "rating is " + Float.toString(temp_rating));
+                    float total = temp_count * temp_rating;
+                    Log.d("TAYLOr", Float.toString(total));
+                    temp_count = temp_count + 1;
+                    total = total + rating;
+                    temp_rating = total / temp_count;
+                    Log.d("TAYLOR", "new rating is " + Float.toString(temp_rating));
+                }
                 Log.d("TAYLOR", "current rating is " + Float.toString(temp_rating));
                 PlaceDetail pd = new PlaceDetail(Float.toString(temp_rating), Integer.toString(temp_count), comment);
                 placeDetailsTable.child(place_id).setValue(pd);
