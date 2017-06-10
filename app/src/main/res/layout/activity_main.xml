@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="14dp"
-        android:layout_below="@+id/continue_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="44dp" />
 
     <com.facebook.login.widget.ProfilePictureView
         android:id="@+id/profilePicture"
@@ -34,18 +34,18 @@
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="Scout"
+        android:typeface="serif"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:textSize="60sp"
+
         android:layout_alignBottom="@+id/name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="36dp"
         android:layout_marginLeft="52dp"
-        android:layout_marginStart="52dp"
-
-        android:text="Scout"
-        android:textColor="@color/colorAccent"
-        android:textSize="80sp"
-        android:textStyle="bold"
-        android:typeface="serif" />
+        android:layout_marginStart="52dp" />
 
     <Button
         android:id="@+id/continue_button"
@@ -54,10 +54,10 @@
         android:background="@color/colorPrimaryDark"
         android:text="Continue to home page"
         android:textAllCaps="false"
-        android:layout_below="@+id/name"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="164dp" />
+        android:layout_marginBottom="96dp" />
 
     <TextView
         android:id="@+id/name"
@@ -70,6 +70,18 @@
         android:text="TextView"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/map_pin"
+        android:layout_above="@+id/continue_button"
+        android:layout_alignLeft="@+id/appName"
+        android:layout_alignStart="@+id/appName"
+        android:layout_alignTop="@+id/name"
+        android:layout_toLeftOf="@+id/name"
+        android:layout_toStartOf="@+id/name" />
 
 
 </RelativeLayout>
