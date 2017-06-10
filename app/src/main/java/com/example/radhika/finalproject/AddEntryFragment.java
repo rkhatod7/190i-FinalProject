@@ -162,7 +162,7 @@ public class AddEntryFragment extends DialogFragment {
                     comment += "\n";
                     comment += name + ": " + commentView.getText().toString();
                 }
-                else if (comment != null) {
+                else if (commentView.getText() != null && comment == null) {
                     comment = name + ": " + commentView.getText().toString();
                 }
                 else {
