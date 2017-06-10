@@ -2,6 +2,7 @@ package com.example.radhika.finalproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Rating;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +34,7 @@ public class PlaceReview extends Fragment {
     Context mContext;
     TextView textViewTitle;
     String place_id;
+    RatingBar ratingBar;
 
     public PlaceReview() {
         // Required empty public constructor
@@ -72,6 +75,7 @@ public class PlaceReview extends Fragment {
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
         back_button = (FloatingActionButton) view.findViewById(R.id.fabBackPlaceReview);
         textViewTitle = (TextView) view.findViewById(R.id.textViewTitlePlaceReview);
+        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
 
         // Set title
         textViewTitle.setText(getArguments().getString(ARG_TITLE));
@@ -102,6 +106,11 @@ public class PlaceReview extends Fragment {
                     Log.d("DREW", value.rating);
                     Log.d("DREW", value.count);
                     Log.d("DREW", value.comment);
+
+                    if (value.rating != null) {
+                        ratingBar.setRating(Float.parseFloat(value.rating));
+                    }
+
                     if (value.comment != null) {
                         tv.setText(value.comment);
                         Log.d("DREW", "updated comment section...");
