@@ -161,36 +161,39 @@ public class AddEntryFragment extends DialogFragment {
                 if (commentView.getText() != null && comment != null) {
                     comment += "\n";
                     comment += name + ": " + commentView.getText().toString();
+                    Log.d("Drew", comment);
+                    PlaceDetail pd = new PlaceDetail("4.2", "5", comment);
+                    placeDetailsTable.child(place_id).setValue(pd);
+                    Log.d("DREW", "hit this");
                 }
                 else if (comment != null) {
                     comment = name + ": " + commentView.getText().toString();
+                    Log.d("Drew", comment);
+                    PlaceDetail pd = new PlaceDetail("4.2", "5", comment);
+                    placeDetailsTable.child(place_id).setValue(pd);
+                    Log.d("DREW", "hit this");
                 }
-                else {
-                    comment = "";
+
+                if (bitmap != null) {
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] data = baos.toByteArray();
+
+                    UploadTask uploadTask = storage.getReference().child(place_id).child(imageKey).putBytes(data);
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                            @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                            Log.d("DREW", "screenshot captured");
+                        }
+                    });
                 }
-                Log.d("Drew", comment);
-                PlaceDetail pd = new PlaceDetail("4.2", "5", comment);
-                placeDetailsTable.child(place_id).setValue(pd);
-                Log.d("DREW", "hit this");
-
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] data = baos.toByteArray();
-
-                UploadTask uploadTask = storage.getReference().child(place_id).child(imageKey).putBytes(data);
-                uploadTask.addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                        @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        Log.d("DREW", "screenshot captured");
-                    }
-                });
                 closeFragment();
             }
         });
