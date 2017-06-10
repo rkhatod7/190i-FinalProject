@@ -161,18 +161,17 @@ public class AddEntryFragment extends DialogFragment {
                 if (commentView.getText() != null && comment != null) {
                     comment += "\n";
                     comment += name + ": " + commentView.getText().toString();
-                    Log.d("Drew", comment);
-                    PlaceDetail pd = new PlaceDetail("4.2", "5", comment);
-                    placeDetailsTable.child(place_id).setValue(pd);
-                    Log.d("DREW", "hit this");
                 }
                 else if (comment != null) {
                     comment = name + ": " + commentView.getText().toString();
-                    Log.d("Drew", comment);
-                    PlaceDetail pd = new PlaceDetail("4.2", "5", comment);
-                    placeDetailsTable.child(place_id).setValue(pd);
-                    Log.d("DREW", "hit this");
                 }
+                else {
+                    comment = "";
+                }
+                Log.d("Drew", comment);
+                PlaceDetail pd = new PlaceDetail("4.2", "5", comment);
+                placeDetailsTable.child(place_id).setValue(pd);
+                Log.d("DREW", "hit this");
 
                 if (bitmap != null) {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();

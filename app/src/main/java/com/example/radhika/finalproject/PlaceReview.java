@@ -31,6 +31,8 @@ public class PlaceReview extends Fragment {
     MapsActivity mActivity;
     Context mContext;
     TextView textViewTitle;
+    String place_id;
+
     public PlaceReview() {
         // Required empty public constructor
     }
@@ -89,16 +91,21 @@ public class PlaceReview extends Fragment {
         DatabaseReference imagesTable = database.getReference("Images");
         DatabaseReference imagePostsTable = database.getReference("ImagePosts");
 
+        place_id = getArguments().getString(ARG_PLACE_ID);
+
         // PlaceDetail(rating, count, comment);
-        placeDetailsTable.addValueEventListener(new ValueEventListener() {
+        placeDetailsTable.child(place_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
-                    PlaceDetail value = singleSnapshot.getValue(PlaceDetail.class);
+                PlaceDetail value = dataSnapshot.getValue(PlaceDetail.class);
+                if (value != null) {
                     Log.d("DREW", value.rating);
                     Log.d("DREW", value.count);
                     Log.d("DREW", value.comment);
-                    tv.setText(value.comment);
+                    if (value.comment != null) {
+                        tv.setText(value.comment);
+                        Log.d("DREW", "updated comment section...");
+                    }
                 }
             }
 
