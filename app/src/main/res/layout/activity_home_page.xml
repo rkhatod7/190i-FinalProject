@@ -36,13 +36,13 @@
         android:layout_marginTop="159dp"/>
 
     <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/map_button"
-        android:src="@drawable/ic_add_location_black_24dp"
-        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_below="@+id/mapText"
         android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimaryDark"
+        android:src="@drawable/ic_add_location_black_24dp"
 
         />
 
@@ -60,14 +60,14 @@
 
 
     <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/location_button"
-        android:src="@drawable/ic_search_black_24dp"
-        android:textColor="@color/white"
-        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_below="@+id/locationText"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimaryDark"
+        android:src="@drawable/ic_search_black_24dp"
+        android:textColor="@color/white" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/back_button"
@@ -76,6 +76,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginBottom="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:clickable="true"
