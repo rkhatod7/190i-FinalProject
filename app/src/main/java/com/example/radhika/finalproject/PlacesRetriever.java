@@ -123,7 +123,8 @@ public class PlacesRetriever {
                         Log.d("RADHIKA", "ParsePlace: " + place.name);
                         break;
                     case "place_id":
-                        place.place_id = reader.nextString();
+                        place.place_id = reader.nextString() + System.currentTimeMillis();
+                        Log.d("JACOB", place.place_id);
                         break;
 
                     default:

@@ -164,11 +164,13 @@ public class AddEntryFragment extends DialogFragment {
             public void onClick(View view) {
                 Log.d("DREW", "Click " + Integer.toString(commentView.getText().length()));
                 if (commentView.getText().length() > 0 && comment.length() > 0) {
-                    comment += "\n";
-                    comment += name + ": " + commentView.getText().toString();
+                    comment += "\n\n";
+                    comment += commentView.getText().toString() + "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t - " + name;
+                    comment += "\n______________________________________________________________________";
                 }
                 else if (commentView.getText().length() > 0 && comment.length() == 0) {
-                    comment = name + ": " + commentView.getText().toString();
+                    comment = "______________________________________________________________________\n\n" + commentView.getText().toString()+ "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t - " + name; ;
+                    comment += "\n______________________________________________________________________";
                 }
 
                 Log.d("Drew", comment);

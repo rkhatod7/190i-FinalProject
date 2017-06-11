@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:isIndicator="true"
             android:numStars="5"
-            android:rating="3" />
+            />
 
     </LinearLayout>
 
@@ -95,7 +95,7 @@
                     android:ems="10"
                     android:focusable="false"
                     android:inputType="textMultiLine"
-                    android:maxLines="8"
+                    android:maxLines="15"
                     android:textColor="@color/cardview_dark_background"
                     tools:clickable="false" />
             </LinearLayout>

@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private LoginButton loginButton;
     TextView name;
     private ProfileTracker mProfileTracker;
-
     public static Profile profile;
     CallbackManager callbackManager;
     Button continueButton;
