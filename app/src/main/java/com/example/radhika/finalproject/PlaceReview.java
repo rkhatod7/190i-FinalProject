@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Rating;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -32,7 +34,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.InputStream;
 import java.lang.reflect.Array;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -101,6 +106,10 @@ public class PlaceReview extends Fragment {
         listView.setAdapter(mAdapter);
         // Set title
         textViewTitle.setText(getArguments().getString(ARG_TITLE));
+        imageList = new ArrayList<Bitmap>();
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,23 +138,25 @@ public class PlaceReview extends Fragment {
         imagesTable.child(place_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //imageList = new ArrayList<Bitmap>();
+                Log.d("DREW", "Updating images");
+                Log.d("DREW", place_id);
                 for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
                     String value = singleSnapshot.getValue(String.class);
-                    Uri mUri = Uri.parse(value);
+                    Log.d("DREW", value);
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(mActivity.getContentResolver(), mUri);
+                        URL url = new URL(value);
+                        bitmap = BitmapFactory.decodeStream((InputStream)url.getContent());
+                        imageList.add(bitmap);
+                        Log.d("DREW", "Added bitmap");
                     }
                     catch (Exception e) {
                         Log.d("DREW", "failed to convert to bitmap");
+                        e.printStackTrace();
                     }
-                    //imageList.add(bitmap);
-                    Log.d("DREW", "Adding bitmap");
-
-                    //mAdapter.notifyDataSetChanged();
                 }
                 Log.d("DREW", "succesful");
                 Log.d("DREW", Integer.toString(imageList.size()));
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override

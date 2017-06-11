@@ -191,7 +191,7 @@ public class AddEntryFragment extends DialogFragment {
 
                 if (bitmap != null) {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
                     byte[] data = baos.toByteArray();
 
                     UploadTask uploadTask = storage.getReference().child(place_id).child(imageKey).putBytes(data);
@@ -210,7 +210,7 @@ public class AddEntryFragment extends DialogFragment {
                         }
                     });
                 }
-                Toast.makeText(getContext(),getActivity().getString(R.string.entry),Toast.LENGTH_SHORT);
+                Toast.makeText(getContext(),getActivity().getString(R.string.entry),Toast.LENGTH_SHORT).show();
                 closeFragment();
             }
         });
@@ -278,8 +278,8 @@ public class AddEntryFragment extends DialogFragment {
 
                         //Get the image bitmap
                         bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-                        imageList.add(bitmap);
-                        mAdapter.notifyDataSetChanged();
+                        //imageList.add(bitmap);
+                        //mAdapter.notifyDataSetChanged();
                         // necessary for uploading to firebase
                         imageKey = imageFilename;
 
