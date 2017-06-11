@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">ScoutApp</string>
     <string name="facebook_app_id">472121856454162</string>
     <string name="fb_login_protocol_scheme">fb472121856454162</string>
     <string name="title_activity_maps">Map</string>
