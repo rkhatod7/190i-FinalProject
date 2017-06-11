@@ -138,6 +138,7 @@ public class PlaceReview extends Fragment {
         imagesTable.child(place_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                imageList.clear();
                 Log.d("DREW", "Updating images");
                 Log.d("DREW", place_id);
                 for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
