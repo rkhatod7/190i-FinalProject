@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         profile = Profile.getCurrentProfile();
         if (profile != null) {
             profileImage.setProfileId(profile.getId());
-            name.setText("Welcome " + profile.getFirstName() + "!");
+            name.setText("Signed in as " + profile.getFirstName() );
             LoginManager.getInstance().registerCallback(callbackManager,
                     new FacebookCallback<LoginResult>() {
                         @Override

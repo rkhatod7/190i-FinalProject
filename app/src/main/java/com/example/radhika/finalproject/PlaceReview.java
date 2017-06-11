@@ -1,6 +1,7 @@
 package com.example.radhika.finalproject;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Rating;
@@ -10,12 +11,14 @@ import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -33,6 +36,9 @@ import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.example.radhika.finalproject.ImageAdapter.imageList;
+import static com.example.radhika.finalproject.MapsActivity.mAdapter;
+
 // TODO REFACTOR NAME BECAUSE THIS ACTUALLY ISNT A POPUP ANYMORE
 public class PlaceReview extends Fragment {
     private static final String ARG_TITLE = "title";
@@ -48,6 +54,7 @@ public class PlaceReview extends Fragment {
     RatingBar ratingBar;
     FirebaseStorage storage;
     Bitmap bitmap;
+    GridView listView;
 
     public PlaceReview() {
         // Required empty public constructor
@@ -68,6 +75,7 @@ public class PlaceReview extends Fragment {
         args.putString(ARG_TITLE, title);
         args.putString(ARG_PLACE_ID, place_id);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -89,14 +97,24 @@ public class PlaceReview extends Fragment {
         back_button = (FloatingActionButton) view.findViewById(R.id.fabBackPlaceReview);
         textViewTitle = (TextView) view.findViewById(R.id.textViewTitlePlaceReview);
         ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
-
+        listView = (GridView) view.findViewById(R.id.listView);
+        listView.setAdapter(mAdapter);
         // Set title
         textViewTitle.setText(getArguments().getString(ARG_TITLE));
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mActivity.showPopup(mTitle, mPlace_id);
+                new AlertDialog.Builder(mActivity)
+                        .setMessage("Submit a review for " + getArguments().getString(ARG_TITLE) + "?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialogInterface, int id){
+                                mActivity.showPopup(mTitle, mPlace_id);
+                            }
+                        }).setNegativeButton("No",null)
+                        .show();
+
             }
         });
 
@@ -111,7 +129,7 @@ public class PlaceReview extends Fragment {
         imagesTable.child(place_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Bitmap> images = new ArrayList<Bitmap>();
+                //imageList = new ArrayList<Bitmap>();
                 for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
                     String value = singleSnapshot.getValue(String.class);
                     Uri mUri = Uri.parse(value);
@@ -121,10 +139,13 @@ public class PlaceReview extends Fragment {
                     catch (Exception e) {
                         Log.d("DREW", "failed to convert to bitmap");
                     }
-                    images.add(bitmap);
+                    //imageList.add(bitmap);
+                    Log.d("DREW", "Adding bitmap");
+
+                    //mAdapter.notifyDataSetChanged();
                 }
                 Log.d("DREW", "succesful");
-                Log.d("DREW", Integer.toString(images.size()));
+                Log.d("DREW", Integer.toString(imageList.size()));
             }
 
             @Override

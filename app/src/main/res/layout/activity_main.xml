@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
-        android:text="Continue to home page"
+        android:text="@string/homepage"
         android:textAllCaps="false"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -67,12 +67,12 @@
         android:layout_alignRight="@+id/profilePicture"
         android:layout_below="@+id/profilePicture"
         android:layout_marginTop="27dp"
-        android:text="TextView"
+        android:text="@string/guest"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/map_pin"

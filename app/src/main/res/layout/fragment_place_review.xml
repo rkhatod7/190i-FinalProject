@@ -48,13 +48,13 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <GridView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1.5"
         android:background="@color/colorPrimaryDark"
-        android:orientation="horizontal"
-        android:padding="@dimen/com_facebook_likeboxcountview_text_padding" />
+        android:numColumns="5" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,9 +71,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
+            android:paddingBottom="@dimen/com_facebook_auth_dialog_corner_radius"
             android:text="Comments:"
             android:textColor="@color/colorPrimary"
-            android:textSize="36sp" />
+            android:textSize="24sp" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -87,15 +88,14 @@
                 <EditText
                     android:id="@+id/tvComments"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/colorPrimaryDark"
                     android:clickable="false"
                     android:ems="10"
                     android:focusable="false"
                     android:inputType="textMultiLine"
-                    android:maxLines="4"
-                    android:text="jacob is\n so so so so so so so so so so sos oso so so so so sos oso fucking\n smart\n . . . \n . . .\n . . .\n jk."
+                    android:maxLines="8"
                     android:textColor="@color/cardview_dark_background"
                     tools:clickable="false" />
             </LinearLayout>

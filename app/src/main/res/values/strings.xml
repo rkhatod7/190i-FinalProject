@@ -3,8 +3,10 @@
     <string name="facebook_app_id">472121856454162</string>
     <string name="fb_login_protocol_scheme">fb472121856454162</string>
     <string name="title_activity_maps">Map</string>
-
+    <string name="guest">Guest</string>
+        <string name="homepage">Continue to home page . . .</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="entry">Your place review was submitted!</string>
 
 </resources>

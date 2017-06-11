@@ -20,7 +20,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.example.radhika.finalproject.HomePage.map_num;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -31,6 +30,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LatLng pos;
     TextView textViewComments;
 
+    public static ImageAdapter mAdapter;
     private SupportMapFragment mapFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
+                mAdapter = new ImageAdapter(getApplicationContext());
                 String place_id = marker.getId();
                View view = findViewById(R.id.map);
                 view.setVisibility(View.INVISIBLE);

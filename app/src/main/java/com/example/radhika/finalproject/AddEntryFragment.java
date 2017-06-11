@@ -2,6 +2,7 @@ package com.example.radhika.finalproject;
 
 import android.*;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -18,6 +19,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.Profile;
 import com.firebase.client.Firebase;
@@ -45,6 +48,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.radhika.finalproject.ImageAdapter.imageList;
+import static com.example.radhika.finalproject.MapsActivity.mAdapter;
 
 
 public class AddEntryFragment extends DialogFragment {
@@ -158,6 +163,7 @@ public class AddEntryFragment extends DialogFragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (commentView.getText() != null && comment != null) {
                     comment += "\n";
                     comment += name + ": " + commentView.getText().toString();
@@ -207,6 +213,7 @@ public class AddEntryFragment extends DialogFragment {
                         }
                     });
                 }
+                Toast.makeText(getContext(),getActivity().getString(R.string.entry),Toast.LENGTH_SHORT);
                 closeFragment();
             }
         });
@@ -274,7 +281,8 @@ public class AddEntryFragment extends DialogFragment {
 
                         //Get the image bitmap
                         bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-
+                        imageList.add(bitmap);
+                        mAdapter.notifyDataSetChanged();
                         // necessary for uploading to firebase
                         imageKey = imageFilename;
 
