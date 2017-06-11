@@ -118,8 +118,7 @@ public class AddEntryFragment extends DialogFragment {
         textViewTitle = (TextView) view.findViewById(R.id.tvTitleAddEntry);
         commentView = (TextView) view.findViewById(R.id.editTextComment);
         ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
-
-
+        comment = "";
 
         // for pin details
         database = FirebaseDatabase.getInstance();
@@ -144,7 +143,7 @@ public class AddEntryFragment extends DialogFragment {
                         Log.d("DREW", "attempting to update comments...");
                         temp_count = Integer.parseInt(value.count);
                         temp_rating = Float.parseFloat(value.rating);
-                        if (value.comment != null) {
+                        if (value.comment.length() != 0) {
                             comment = value.comment;
                         }
                     } catch (Exception e) {
@@ -163,17 +162,15 @@ public class AddEntryFragment extends DialogFragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (commentView.getText() != null && comment != null) {
+                Log.d("DREW", "Click " + Integer.toString(commentView.getText().length()));
+                if (commentView.getText().length() > 0 && comment.length() > 0) {
                     comment += "\n";
                     comment += name + ": " + commentView.getText().toString();
                 }
-                else if (commentView.getText() != null && comment == null) {
+                else if (commentView.getText().length() > 0 && comment.length() == 0) {
                     comment = name + ": " + commentView.getText().toString();
                 }
-                else {
-                    comment = "";
-                }
+
                 Log.d("Drew", comment);
                 if (ratingBar.getRating() != 0) {
                     Log.d("TAYLOR", "rating is bigger than 0");
