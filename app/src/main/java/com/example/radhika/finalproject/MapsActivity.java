@@ -218,23 +218,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (mCurrLocationMarker != null) {
             mCurrLocationMarker.remove();
         }
-        if(flag == 0) {
-            //Place current location marker
-            lat = location.getLatitude();
-            lng = location.getLongitude();
-            //latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        try {
+            if (flag == 0) {
+                //Place current location marker
+                lat = location.getLatitude();
+                lng = location.getLongitude();
+                //latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-            pos = new LatLng(location.getLatitude(), location.getLongitude());
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(pos);
-            markerOptions.title("Current Position");
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-            mCurrLocationMarker = mMap.addMarker(markerOptions);
+                pos = new LatLng(location.getLatitude(), location.getLongitude());
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(pos);
+                markerOptions.title("Current Position");
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                mCurrLocationMarker = mMap.addMarker(markerOptions);
 
-            //mMap.addMarker(new MarkerOptions().position(pos).title("Your Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 17));
-            Log.d("TAYLOR", "position is" + pos);
+                //mMap.addMarker(new MarkerOptions().position(pos).title("Your Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 17));
+                Log.d("TAYLOR", "position is" + pos);
         /*
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
@@ -242,73 +243,77 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         */
 
 
-            //stop location updates
-            if (mGoogleApiClient != null) {
+                //stop location updates
+                if (mGoogleApiClient != null) {
 
-                LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+                    LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+                }
+
+                Places = new ArrayList<>();
+                PlacesRetriever.GetPlaces(new PlacesRetriever.OnPlaceListRetrievedListener() {
+                    @Override
+                    public void OnPlaceListRetrieved(List<Place> places) {
+                        Places = places;
+                        for (int i = 0; i < Places.size(); i++) {
+                            Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(Places.get(i).Lat, Places.get(i).lng)).title(Places.get(i).name));
+
+                            marker.setTag(Places.get(i).place_id);
+
+
+                        }
+                    }
+                });
+
+                ClubRetriever.GetPlaces(new ClubRetriever.OnPlaceListRetrievedListener() {
+                    @Override
+                    public void OnPlaceListRetrieved(List<Place> places) {
+                        Places = places;
+                        for (int i = 0; i < Places.size(); i++) {
+                            Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(Places.get(i).Lat, Places.get(i).lng)).title(Places.get(i).name).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
+
+                            marker.setTag(Places.get(i).place_id);
+
+
+                        }
+                    }
+
+                });
+                AttractionRetriever.GetPlaces(new AttractionRetriever.OnPlaceListRetrievedListener() {
+                    @Override
+                    public void OnPlaceListRetrieved(List<Place> places) {
+                        Places = places;
+                        for (int i = 0; i < Places.size(); i++) {
+                            Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(Places.get(i).Lat, Places.get(i).lng)).title(Places.get(i).name).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+                            marker.setTag(Places.get(i).place_id);
+
+
+                        }
+                    }
+
+                });
+
+                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                    @Override
+                    public void onInfoWindowClick(Marker marker) {
+                        mAdapter = new ImageAdapter(getApplicationContext());
+                        String place_id = marker.getId();
+                        View view = findViewById(R.id.map);
+                        view.setVisibility(View.INVISIBLE);
+                        findViewById(R.id.legend).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.fabBackMaps).setVisibility(View.INVISIBLE);
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.activity_maps, PlaceReview.newInstance(marker.getTitle(), place_id));
+                        fragmentTransaction.commit();
+                    }
+                });
             }
-
-            Places = new ArrayList<>();
-            PlacesRetriever.GetPlaces(new PlacesRetriever.OnPlaceListRetrievedListener() {
-                @Override
-                public void OnPlaceListRetrieved(List<Place> places) {
-                    Places = places;
-                    for (int i = 0; i < Places.size(); i++) {
-                        Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(Places.get(i).Lat, Places.get(i).lng)).title(Places.get(i).name));
-
-                        marker.setTag(Places.get(i).place_id);
-
-
-                    }
-                }
-            });
-
-            ClubRetriever.GetPlaces(new ClubRetriever.OnPlaceListRetrievedListener() {
-                @Override
-                public void OnPlaceListRetrieved(List<Place> places) {
-                    Places = places;
-                    for (int i = 0; i < Places.size(); i++) {
-                        Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(Places.get(i).Lat, Places.get(i).lng)).title(Places.get(i).name).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
-
-                        marker.setTag(Places.get(i).place_id);
-
-
-                    }
-                }
-
-            });
-            AttractionRetriever.GetPlaces(new AttractionRetriever.OnPlaceListRetrievedListener() {
-                @Override
-                public void OnPlaceListRetrieved(List<Place> places) {
-                    Places = places;
-                    for (int i = 0; i < Places.size(); i++) {
-                        Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(Places.get(i).Lat, Places.get(i).lng)).title(Places.get(i).name).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-
-                        marker.setTag(Places.get(i).place_id);
-
-
-                    }
-                }
-
-            });
-
-            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                @Override
-                public void onInfoWindowClick(Marker marker) {
-                    mAdapter = new ImageAdapter(getApplicationContext());
-                    String place_id = marker.getId();
-                    View view = findViewById(R.id.map);
-                    view.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.legend).setVisibility(View.INVISIBLE);
-                    findViewById(R.id.fabBackMaps).setVisibility(View.INVISIBLE);
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.activity_maps, PlaceReview.newInstance(marker.getTitle(), place_id));
-                    fragmentTransaction.commit();
-                }
-            });
         }
-
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
 
 
     }

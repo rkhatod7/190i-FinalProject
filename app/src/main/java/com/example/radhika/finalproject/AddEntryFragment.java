@@ -212,7 +212,7 @@ public class AddEntryFragment extends DialogFragment {
                         }
                     });
                 }
-                Toast.makeText(getContext(),getActivity().getString(R.string.entry),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),getActivity().getString(R.string.entry),Toast.LENGTH_LONG).show();
                 closeFragment();
             }
         });
