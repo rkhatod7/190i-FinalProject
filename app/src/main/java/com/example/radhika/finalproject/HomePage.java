@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class HomePage extends AppCompatActivity {
     static int map_num = 0;
-
+    static int flag = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,7 @@ public class HomePage extends AppCompatActivity {
         mapText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                map_num = 1;
+                map_num = 5;
                 openMap(v);
             }
         });
@@ -46,6 +46,7 @@ public class HomePage extends AppCompatActivity {
         locationText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flag = 1;
                 openList(v);
             }
         });
@@ -53,7 +54,7 @@ public class HomePage extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                map_num = 1;
+                map_num = 5;
                 openMap(v);
 
             }
@@ -62,6 +63,7 @@ public class HomePage extends AppCompatActivity {
         locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flag = 1;
                 openList(v);
             }
         });

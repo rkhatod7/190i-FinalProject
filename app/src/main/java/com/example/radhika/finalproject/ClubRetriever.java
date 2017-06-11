@@ -66,6 +66,13 @@ public class ClubRetriever {
                     connection = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=52.3702,4.8952&radius=800&types=night_club&key=AIzaSyALd_KbyBkJxy4LrayDU3_nPTSYwZDynIY").openConnection();
                     // URLConnection connection = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.4140,-119.8489&radius=500&key=AIzaSyALd_KbyBkJxy4LrayDU3_nPTSYwZDynIY").openConnection();
                 }
+
+                if (map_num == 5)
+                {
+                    connection = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +MapsActivity.lat +"," +MapsActivity.lng+ "&radius=800&types=night_club&key=AIzaSyALd_KbyBkJxy4LrayDU3_nPTSYwZDynIY").openConnection();
+
+                }
+
                 Log.d("HERE", "JUST OPENED URL CONNECTION" + connection);
                 JsonReader reader = new JsonReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
                 List<Place> places = new ArrayList<>();
