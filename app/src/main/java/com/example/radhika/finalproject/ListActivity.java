@@ -12,6 +12,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import static com.example.radhika.finalproject.HomePage.map_num;
+import static  com.example.radhika.finalproject.HomePage.flag;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -70,7 +71,7 @@ public class ListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                flag = 0;
                 Intent intent = new Intent(getApplicationContext(), HomePage.class);
                 startActivity(intent);
             }
