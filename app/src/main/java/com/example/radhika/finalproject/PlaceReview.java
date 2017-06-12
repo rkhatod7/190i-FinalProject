@@ -148,16 +148,20 @@ public class PlaceReview extends Fragment {
                         URL url = new URL(value);
                         bitmap = BitmapFactory.decodeStream((InputStream)url.getContent());
                         imageList.add(bitmap);
+                        mAdapter.notifyDataSetChanged();
                         Log.d("DREW", "Added bitmap");
                     }
                     catch (Exception e) {
                         Log.d("DREW", "failed to convert to bitmap");
                         e.printStackTrace();
                     }
+                    catch(Error e)
+                    {
+                        //
+                    }
                 }
                 Log.d("DREW", "succesful");
                 Log.d("DREW", Integer.toString(imageList.size()));
-                mAdapter.notifyDataSetChanged();
             }
 
             @Override
